@@ -4,6 +4,53 @@ A tool for video denoising and upscaling using FastDVDnet and Real-ESRGAN.
 ## About
 This project was developed by Alex Nosov as an integration of powerful video denoising and upscaling libraries. Special thanks to the authors of FastDVDnet and Real-ESRGAN for their incredible work.
 
+## Features
+
+- **Video Denoising:** Removes noise from videos using FastDVDnet.
+- **Video Upscaling:** Upscales videos using Real-ESRGAN models.
+
+## Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.x (recommended version: 3.8+)
+- Git
+- pip (Python package installer)
+
+### 1. Install Dependencies
+
+Clone this repository:
+
+```bash
+git clone https://github.com/Alexnosov1/smart-video-upscaler.git
+cd smart-video-upscaler
+```
+Install required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+### 2. Pre-trained Models
+
+This project requires pre-trained models for both FastDVDnet and Real-ESRGAN. If you already have the models, simply place them in the `weights` folder.
+
+- **FastDVDnet model** (for denoising)
+- **Real-ESRGAN models** (for upscaling)
+  - `RealESRGAN_x2plus.pth`
+  - `RealESRGAN_x4plus.pth`
+
+If you don't have the models, you can download them from the following links:
+
+- [FastDVDnet model](https://github.com/m-tassano/fastdvdnet)
+- [Real-ESRGAN models](https://github.com/xinntao/Real-ESRGAN)
+
+### 3. Run the Project
+Once everything is set up, you can use the following command to run the video processing:
+```bash
+python main.py --input_video input_video.mp4 --output_video output_video.mp4
+```
+If you want to customize the settings (like model paths or video paths), you can adjust them directly in the code or modify relevant variables in main.py.
+
 ## Acknowledgments
 This project uses the following libraries:
 - [FastDVDnet](https://github.com/m-tassano/fastdvdnet) - Licensed under MIT License.
