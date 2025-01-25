@@ -13,7 +13,7 @@ def load_model():
     """Загрузка FastDVDnet"""
     model = FastDVDnet(num_input_frames=5)
     state_temp_dict = torch.load(
-        r"C:\Users\angel\Downloads\fastdvdnet\model.pth",
+        "model.pth",
         map_location="cuda" if torch.cuda.is_available() else "cpu",
     )
     model = torch.nn.DataParallel(model).cuda()
