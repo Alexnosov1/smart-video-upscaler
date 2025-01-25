@@ -106,8 +106,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = load_model().to(device)
 
 # Использование функции
-input_video = r"C:\Users\angel\Downloads\Видео без названия — сделано в Clipchamp.mp4"
-# output_video = r"C:\Users\angel\Downloads\fastdvdnet\output_denoised_fastdvdnet.mp4"
+input_video = "your_parh_to video.mp4"
+# output_video = "output_denoised_fastdvdnet.mp4"
 # process_video(input_video, output_video, model, device)
 output_video_dir = r"C:\Users\angel\Downloads\Upscaled_3"
 upscale_video_cli(input_video, output_video_dir)
