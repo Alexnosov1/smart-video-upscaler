@@ -8,7 +8,7 @@ This project was developed by Alex Nosov as an integration of powerful video den
 This project uses the following libraries:
 - [FastDVDnet](https://github.com/m-tassano/fastdvdnet) - Licensed under MIT License.
 - [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) - Licensed under BSD 3-Clause License.
-- 
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
