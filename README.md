@@ -47,9 +47,22 @@ If you don't have the models, you can download them from the following links:
 ### 3. Run the Project
 Once everything is set up, you can use the following command to run the video processing:
 ```bash
-python main.py --input_video input_video.mp4 --output_video output_video.mp4
+python main.py --input_video "C:/path/to/your/video.mp4" --output_video_dir "C:/path/to/save/output/" --model "fastdvdnet" --device "cuda"
 ```
-If you want to customize the settings (like model paths or video paths), you can adjust them directly in the code or modify relevant variables in main.py.
+You can choice fastdvdnet or realesrgan and cuda or cpu
+Options:
+Model Selection (--model):
+Choose the processing model:
+
+"fastdvdnet" — video denoising.
+"realesrgan" — video upscaling.
+"fastdvdnet_and_realesrgan" — combined denoising and upscaling (recommended).
+Device (--device):
+Specify the hardware for processing:
+
+"cuda" — for GPU acceleration (if available).
+"cpu" — for processing on the CPU.
+If you want to customize the settings (such as model paths or advanced parameters), you can adjust them directly in the code or modify the relevant variables in main.py.
 
 ## Acknowledgments
 This project uses the following libraries:
