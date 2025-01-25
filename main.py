@@ -7,6 +7,7 @@ from torchvision.transforms import ToTensor
 from tqdm import tqdm
 import subprocess
 import os
+import argparse
 
 
 def load_model():
@@ -21,7 +22,6 @@ def load_model():
     model.eval()
     return model
 
-
 def prepare_frames(frames):
     """Подготовка последовательности кадров"""
     frame_tensors = [ToTensor()(frame).unsqueeze(0) for frame in frames]
@@ -31,6 +31,7 @@ def prepare_frames(frames):
 
 def process_video(input_path, output_path, model, device):
     """Обработка видео с использованием FastDVDnet"""
+
     cap = cv2.VideoCapture(input_path)
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -76,12 +77,12 @@ def process_video(input_path, output_path, model, device):
     out.release()
     print(f"Видео обработано и сохранено в {output_path}")
 
-
-def upscale_video_cli(input_path, output_dir, model_name="realesr-general-x4v3.pth", scale = 2, fps=30, denoising_strength=1.0):
+def upscale_video_realesrgan(input_path, output_dir, device, model_name="realesr-general-x4v3.pth",
+                             scale = 2, fps=30, denoising_strength=1.0):
+    print(f"Processing video: {input_path} with Real-ESRGAN model on {device}.")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    # Формируем команду для запуска через subprocess
     command = [
         "python", "inference_realesrgan_video.py",
         "--model_name", model_name,
@@ -95,19 +96,43 @@ def upscale_video_cli(input_path, output_dir, model_name="realesr-general-x4v3.p
 
     print(f"Запуск команды: {' '.join(command)}")
     try:
-        # Запуск процесса
         subprocess.run(command, check=True)
         print(f"Видео успешно обработано и сохранено в {output_dir}")
     except subprocess.CalledProcessError as e:
         print(f"Ошибка при выполнении команды: {e}")
 
+def upscale_video_cli(input_video, output_video_dir, model_name, device):
+    output_video = os.path.join(output_video_dir, "output_video")
+    if model_name == "fastdvdnet":
+        model = load_model().to(device)
+        temp_video_path = os.path.join(output_video_dir, "temp_denoised.mp4")
+        process_video(input_video, temp_video_path, model, device)
+        input_video = temp_video_path
+        model_name = "realesrgan"
+        print(f"FastDVDnet denoising complete. Now upscaling with Real-ESRGAN.")
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = load_model().to(device)
+    if model_name == "realesrgan":
+        upscale_video_realesrgan(input_video, output_video, device)
 
-# Использование функции
-input_video = "your_parh_to video.mp4"
-# output_video = "output_denoised_fastdvdnet.mp4"
-# process_video(input_video, output_video, model, device)
-output_video_dir = r"C:\Users\angel\Downloads\Upscaled_3"
-upscale_video_cli(input_video, output_video_dir)
+    print(f"Video saved to: {output_video}")
+
+def main():
+    parser = argparse.ArgumentParser(description="Upscale and denoise videos using FastDVDnet and Real-ESRGAN.")
+    parser.add_argument('--input_video', type=str, required=True, help="Path to the input video file.")
+    parser.add_argument('--output_video_dir', type=str, required=True, help="Directory to save the output video.")
+    parser.add_argument('--model', type=str, default="realesrgan", choices=["realesrgan", "fastdvdnet"])
+    parser.add_argument('--device', type=str, default="cpu", choices=["cpu", "cuda"], help="Select device: cpu or cuda.")
+
+    args = parser.parse_args()
+
+    if not os.path.isfile(args.input_video):
+        print(f"Error: The file {args.input_video} does not exist.")
+        return
+    if not os.path.isdir(args.output_video_dir):
+        print(f"Error: The directory {args.output_video_dir} does not exist.")
+        return
+
+    upscale_video_cli(args.input_video, args.output_video_dir, args.model, args.device)
+
+if __name__ == '__main__':
+    main()
