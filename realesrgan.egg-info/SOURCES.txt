@@ -1,0 +1,8 @@
+README.md
+setup.py
+realesrgan.egg-info/PKG-INFO
+realesrgan.egg-info/SOURCES.txt
+realesrgan.egg-info/dependency_links.txt
+realesrgan.egg-info/not-zip-safe
+realesrgan.egg-info/requires.txt
+realesrgan.egg-info/top_level.txt
