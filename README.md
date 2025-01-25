@@ -49,19 +49,17 @@ Once everything is set up, you can use the following command to run the video pr
 ```bash
 python main.py --input_video "C:/path/to/your/video.mp4" --output_video_dir "C:/path/to/save/output/" --model "fastdvdnet" --device "cuda"
 ```
-You can choice fastdvdnet or realesrgan and cuda or cpu
+You can choose fastdvdnet or realesrgan and cuda or cpu
 Options:
-Model Selection (--model):
-Choose the processing model:
-
-"fastdvdnet" — video denoising.
-"realesrgan" — video upscaling.
-"fastdvdnet_and_realesrgan" — combined denoising and upscaling (recommended).
-Device (--device):
-Specify the hardware for processing:
-
-"cuda" — for GPU acceleration (if available).
-"cpu" — for processing on the CPU.
+- **Model Selection (`--model`)**:
+  Specify the processing model:  
+  - `fastdvdnet` — video denoising and upscaling with FastDVDnet (recommended for stronger denoising).  
+  - `realesrgan` — video upscaling with light denoising using Real-ESRGAN models (`realesr-general-x4v3.pth` or `realesr-general-wdn-x4v3.pth`). 
+- **Device (`--device`)**:  
+  Specify the hardware for processing:  
+  - `cuda` — for GPU acceleration (if available).  
+  - `cpu` — for processing on the CPU.
+    
 If you want to customize the settings (such as model paths or advanced parameters), you can adjust them directly in the code or modify the relevant variables in main.py.
 
 ## Acknowledgments
