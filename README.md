@@ -62,6 +62,11 @@ Options:
     
 If you want to customize the settings (such as model paths or advanced parameters), you can adjust them directly in the code or modify the relevant variables in main.py.
 
+### 4. Example of result
+Here is an example of the processed video:
+<img src="https://github.com/Alexnosov1/smart-video-upscaler/blob/main/img/combined_side_by_side.gif" width=256>
+This GIF demonstrates the effect of applying the video processing steps. Feel free to try it yourself with your own videos!
+
 ## Acknowledgments
 This project uses the following libraries:
 - [FastDVDnet](https://github.com/m-tassano/fastdvdnet) - Licensed under MIT License.
