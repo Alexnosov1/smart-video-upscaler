@@ -70,12 +70,12 @@ Here is an example of the processed video.
 This GIF demonstrates the effect of applying the video processing steps. Feel free to try it yourself with your own videos!
 
 There are two examples else for demonstration. 
-In this picture, the left side is before processing, and the right side is after processing:
-<img src="https://github.com/Alexnosov1/smart-video-upscaler/blob/main/img/frame.png"> 
 
+In this picture, the left side is before processing, and the right side is after processing:
+<img src="https://github.com/Alexnosov1/smart-video-upscaler/blob/main/img/frame.png" style="max-width:100%; height:auto;"> 
 
 In this second example, the left side is after processing, and the right side is before processing:
-<img src="https://github.com/Alexnosov1/smart-video-upscaler/blob/main/img/frame1.png">
+<img src="https://github.com/Alexnosov1/smart-video-upscaler/blob/main/img/frame1.png" style="max-width:100%; height:auto;">
 
 
 ## Acknowledgments
